@@ -21,4 +21,4 @@ jobs:
           cache: maven
 
       - name: Empaquetar aplicación
-        run: mvn clean package -DskipTests
+        run: cd Pipeline && mvn clean package -DskipTests
