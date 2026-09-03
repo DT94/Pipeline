@@ -1,24 +1,33 @@
-name: Pipeline
 
-on:
-  push:
-    branches: [ "main" ]
+        on:
+          push:
+            branches: [ "main" ]
 
-jobs:
-  build:
-    name: Compilar Proyecto
-    runs-on: ubuntu-latest
+        jobs:
+          build:
+            name: Compilar Proyecto
+            runs-on: ubuntu-latest
 
-    steps:
-      - name: Descargar el código del repositorio
-        uses: actions/checkout@v4
+            steps:
+              - name: Descargar el código del repositorio
+                uses: actions/checkout@v4
 
-      - name: Configurar Java 17
-        uses: actions/setup-java@v4
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-          cache: maven
+              - name: Configurar Java 17
+                uses: actions/setup-java@v4
+                with:
+                  java-version: '17'
+                  distribution: 'temurin'
+                  cache: maven
 
-      - name: Empaquetar aplicación
-        run: mvn clean package -DskipTests
+              - name: Empaquetar aplicación
+                run: mvn clean package -DskipTests
+
+              # --- NUEVA CAPA DE SEGURIDAD (SCA) ---
+              - name: Escanear dependencias con Snyk
+                uses: snyk/actions/maven@master
+                env:
+                  # GitHub extrae  contraseña de la bóveda de forma segura
+                  SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+                with:
+                  # Le decimos que bloquee el paso a producción si hay fallos altos o críticos
+                  args: --severity-threshold=high
