@@ -24,13 +24,13 @@ jobs:
 
       - name: Empaquetar aplicación
         run: mvn clean package -DskipTests
-
-      # --- CAPA SAST: SonarCloud ---
-      - name: Analizar código con SonarCloud
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -B verify sonar:sonar -Dsonar.projectKey=dt94_Pipeline -Dsonar.organization=dt94 -Dsonar.host.url=https://sonarcloud.io
+          
+          # --- CAPA SAST: SonarCloud ---
+               - name: Analizar código con SonarCloud
+               env:
+                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                 SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+               run: mvn sonar:sonar -Dsonar.projectKey=dt94_Pipeline -Dsonar.organization=dt94 -Dsonar.host.url=https://sonarcloud.io
 
       # --- CAPA SCA: Snyk ---
       - name: Escanear dependencias con Snyk
