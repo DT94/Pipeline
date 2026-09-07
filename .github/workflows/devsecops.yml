@@ -1,4 +1,4 @@
-name: Pipeline Inquebrantable
+name: Pipeline
 
 on:
   push:
@@ -32,7 +32,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: >
-            -Dsonar.projectKey=dt94_Pipeline
+            -Dsonar.projectKey=DT94_Pipeline
             -Dsonar.organization=dt94
             -Dsonar.host.url=https://sonarcloud.io
             -Dsonar.java.binaries=target/classes
