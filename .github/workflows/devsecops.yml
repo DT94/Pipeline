@@ -1,4 +1,4 @@
-name: Pipeline
+name: Pipeline Inquebrantable
 
 on:
   push:
@@ -22,11 +22,20 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Compilar y analizar con SonarCloud
+      - name: Empaquetar aplicación
+        run: mvn clean package -DskipTests
+
+      - name: Analizar código con SonarCloud
+        uses: SonarSource/sonarcloud-github-action@master
         env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -DskipTests -Dsonar.projectKey=dt94_Pipeline -Dsonar.organization=dt94 -Dsonar.host.url=https://sonarcloud.io
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.projectKey=dt94_Pipeline
+            -Dsonar.organization=dt94
+            -Dsonar.host.url=https://sonarcloud.io
+            -Dsonar.java.binaries=target/classes
 
       - name: Escanear dependencias con Snyk
         uses: snyk/actions/maven@master
