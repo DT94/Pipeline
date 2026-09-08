@@ -38,8 +38,9 @@ jobs:
             -Dsonar.java.binaries=target/classes
 
       - name: Escanear dependencias con Snyk
-        uses: snyk/actions/maven@master
         env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          args: --severity-threshold=high
+              SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        run: |
+              npm install -g snyk
+              snyk auth $SNYK_TOKEN
+              snyk test --severity-threshold=high
