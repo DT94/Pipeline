@@ -42,5 +42,5 @@ jobs:
 
       - name: Escanear dependencias con Snyk
         env:
-         NYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         run: snyk test --severity-threshold=high -d
