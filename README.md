@@ -1,6 +1,6 @@
 # DT94 Pipeline - Backend Application
 
-[![CI/CD DevSecOps](https://github.com/tu-usuario/DT94_Pipeline/actions/workflows/devsecops.yml/badge.svg)](https://github.com/tu-usuario/DT94_Pipeline/actions)
+[![CI/CD DevSecOps](https://github.com/DT94/Pipeline/actions/workflows/devsecops.yml/badge.svg)](https://github.com/DT94/Pipeline/actions)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=DT94_Pipeline&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=DT94_Pipeline)
 [![Security Scan](https://img.shields.io/badge/Security-Snyk-4c4a73.svg)](https://snyk.io/)
 
@@ -36,7 +36,7 @@ Para levantar este proyecto en un entorno de desarrollo local, asegúrate de ten
 
 1. **Clonar el repositorio:**
    ```bash
-   git clone [https://github.com/tu-usuario/DT94_Pipeline.git](https://github.com/tu-usuario/DT94_Pipeline.git)
+   git clone [https://github.com/(https://github.com/DT94/Pipeline/DT94_Pipeline.git](https://github.com/(https://github.com/DT94/Pipeline/DT94_Pipeline.git)
    cd DT94_Pipeline
    2. **Otorgar permisos de ejecución al Wrapper (Linux/Mac):**
    ```bash
