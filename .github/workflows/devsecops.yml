@@ -47,3 +47,18 @@ jobs:
         env:
          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         run: snyk test --severity-threshold=high -d
+
+
+
+
+      - name: Construir imagen Docker
+        run: docker build -t backend-api:latest .
+
+      - name: Escanear contenedor con Trivy
+        uses: aquasecurity/trivy-action@master
+        with:
+                image-ref: 'backend-api:latest'
+                format: 'table'
+                exit-code: '1'
+                ignore-unfixed: true
+                severity: 'CRITICAL,HIGH'
