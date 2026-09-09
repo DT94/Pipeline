@@ -40,6 +40,9 @@ jobs:
       - name: Instalar Snyk CLI
         uses: snyk/actions/setup@master
 
+      - name: Dar permisos a Maven Wrapper
+        run: chmod +x mvnw
+
       - name: Escanear dependencias con Snyk
         env:
          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
